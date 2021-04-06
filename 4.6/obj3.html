@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let obj1={
+        age:11,
+        ["te"+"l"] :12345436784
+    }
+    obj1.name="sjadg"
+    Object.defineProperty(obj1,"sex",{
+        value:"F"
+    })
+    // let  h="Hel"+"lo" //Helol
+    // console.log(h)
+     obj1["hel"+"lo"]="Hello world"//obj[1.hello="hello world"
+    console.log("obj1:" ,obj1)
+</script>
+</body>
+</html>
