@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class p1{
+        //构造器方法 实例对象时会自动调用
+        constructor(name,age){
+            this.name=name
+            this.age=age
+        }
+        say(){
+            console.log(this.name,this.age)
+        }
+    }
+    //通过new+class 实例化对象
+    let p2=new p1("wangwu",33)
+    console.log(p2)
+</script>
+</body>
+</html>
