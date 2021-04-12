@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .color1{
+            background-color: blue;
+        }
+        .style1{
+            background-color: red;
+        }
+        .style2{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<!--    {{msg}}-->
+<!--    <input type="text" v-model="msg">-->
+<!--    <div v-bind:href="url" data-id="">Hello world</div>-->
+<!--    <div id="div2" class=""></div>-->
+<!--    <div id="div1" class="color1"></div>-->
+<!--    <div id="div1" class=""></div>-->
+    <div v-bind:class="class2"></div>
+</div>
+<!--<script>-->
+<!--    // const d1=document.getElementById("div2")-->
+<!--    // console.log(typeof d1)//object-->
+<!--    const d=document.querySelector("#div2")-->
+<!--    console.log(typeof d)//object-->
+<!--    //给节点对象添加自定义属性-->
+<!--    d.setAttribute("abc","Hello World") //设置属性-->
+<!--    console.log(d.getAttribute("id")) //获取属性-->
+<!--</script>-->
+<script src="../vue.js"></script>
+<!--<script>-->
+<!--    // const obj={-->
+<!--    //     name:"lisi"-->
+<!--    // }-->
+<!--    // obj["a"+"ge"]=11 //obj.age-->
+<!--    // console.log(obj)-->
+<!--</script>-->
+
+<script>
+    let app=new Vue({
+        el:"#app",
+        data:{
+            msg:"Hello",
+            class2:{
+                style1:true,
+                style2:true
+            }
+        }
+    })
+</script>
+<!--<script>-->
+<!--    let app=new Vue({-->
+<!--        el:"#app", //容器ID 挂载点-->
+<!--        data:{-->
+<!--            msg:"Hello eorld"-->
+<!--        },-->
+
+<!--    })-->
+<!--    console.log(app)-->
+<!--</script>-->
+</body>
+</html>
