@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>
+    用户名：<input v-model="user">
+        {{answer}}
+    </p>
+</div>
+<script src="../vue.js"></script>
+<script src="../axios.min.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            user:"",
+            answer:"请输入用户名"
+        },
+        watch:{
+            user(nv,ol){
+                console.log(this)
+                let self=this
+                this.answer="正在接收接口数据。。。"
+                //接收远程接口数据 异步执行
+                axios.get("http://vue.api.comcto.com/api/checkname.php").then(function (res){
+                    console.log(this)
+                    console.log("接口返回的数据",res.data)
+                    console.log(res.data);
+                    if (res.data=="name"){
+                        self.answer="OK"
+                    }else{
+                        self.answer="已存在"
+                    }
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

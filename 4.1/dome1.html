@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="submit" value="AAA">
+<input type="submit" value="bbb">
+<input type="submit" value="ccc">
+<input type="submit" value="ddd">
+</body>
+</html>
+<script>
+    window.onload=function (){
+        var sub=document.querySelectorAll("input");
+        for (var i=0;i<sub.length;i++){
+            sub[i].index=i;
+            sub[i].onclick=function (){
+                console.log(this.index);
+            }
+        }
+
+
+    }
+</script>

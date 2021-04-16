@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    .grid {
+      margin: auto;
+      width: 530px;
+      text-align: center;
+    }
+    .grid table {
+      border-top: 1px solid #C2D89A;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .grid th,td {
+      padding: 10;
+      border: 1px dashed #F3DCAB;
+      height: 35px;
+      line-height: 35px;
+    }
+    .grid th {
+      background-color: #F3DCAB;
+    }
+    .grid .book {
+      padding-bottom: 10px;
+      padding-top: 5px;
+      background-color: #F3DCAB;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="grid">
+      <div>
+        <h1>图书管理</h1>
+        <div class="book">
+          <div>
+            <label for="id">
+              编号：
+            </label>
+            <input type="text" id="id" v-model="id">
+            <label for="name">
+              名称：
+            </label>
+            <input type="text" id="name"  v-model="name">
+            <button @click="add">提交</button>
+          </div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+                                     <!-- 把他下标也遍历出来 -->
+          <tr :key='item.id' v-for='(item,index) in books'>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.time}}</td>
+            <td>
+              <a href="">修改</a>
+              <span>|</span>
+              <a href="" @click.prevent="del()">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript" src="../vue.js"></script>
+  <script src="../axios.min.js"></script>
+  <script type="text/javascript">
+    /*
+      图书管理-添加图书
+    */
+    const urls="http://vue.api.comcto.com/api/books.php"
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        //默认值
+        id:null,
+        name:null,
+        books:[],
+      },
+      methods: {
+        //添加
+       add(){
+         let time=new Date();
+         let n=time.getFullYear();//年
+         let y=time.getMonth();//月
+         let day=time.getDate();//日
+         //用模板字符串形式拼接
+         let nyday=`${n}-${y}-${day}`
+         let new_book={id:this.id,name:this.name,time:nyday}
+         //把输入的内容push进入books数组里面
+         this.books.push(new_book);
+       },
+       //删除  
+       //传一个索引下标
+       del(index){
+                      //从当前传过来的下标开始删除往后一个
+      this.books.splice(index,1);
+       }
+      },
+      //周期
+      created(){
+        let self=this
+        axios.get(urls).then(function(res){
+            //  console.log(res)
+           self.books=res.data;
+           });
+        }
+    });
+  </script>
+</body>
+</html>
